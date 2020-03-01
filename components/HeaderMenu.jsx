@@ -2,51 +2,28 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 
-const HeaderMenu = () => (
-  <Fragment>
-    <ul>
+const HeaderMenu = (props) => {
+  const { menu, link } = props;
+  return (
+    <Fragment>
       <li>
-        <Link href="/">
+        <Link href={`${link}`}>
           <a>
-            home
+            {menu}
           </a>
         </Link>
       </li>
-      <li>
-        <Link href="/">
-          <a>
-            home
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/">
-          <a>
-            home
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/">
-          <a>
-            home
-          </a>
-        </Link>
-      </li>
-    </ul>
-    <style jsx>
-      {`
-        ul{
-          
-        }
-        li{
-          display:inline;
-          margin-left:50px;
-          line-height:100px;
-        }
-      `}
-    </style>
-  </Fragment>
-);
+      <style jsx>
+        {`
+          li{
+            display:inline;
+            margin-left:50px;
+            line-height:100px;
+          }
+        `}
+      </style>
+    </Fragment>
+  );
+};
 
 export default HeaderMenu;

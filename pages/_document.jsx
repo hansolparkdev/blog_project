@@ -20,6 +20,7 @@ export default class RootDocument extends Document {
                 padding: 0;
                 margin: 0;
               }
+              
               @charset "utf-8";
 
               body,div,ul,li,dl,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,table,tr,th,td,textarea,button,font{margin: 0; padding:0}

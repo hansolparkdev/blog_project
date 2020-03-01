@@ -15,7 +15,13 @@ const Header = (props) => (
           </Link>
         </div>
         <div className="header_menu">
-          <HeaderMenu />
+          <ul>
+            <HeaderMenu menu="home" link="/" />
+            <HeaderMenu menu="about" link="/about" />
+            <HeaderMenu menu="skills" link="/skills" />
+            <HeaderMenu menu="contact" link="/contact" />
+            <HeaderMenu menu="login" link="/login" />
+          </ul>
         </div>
       </div>
     </div>
