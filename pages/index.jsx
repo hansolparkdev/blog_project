@@ -1,55 +1,34 @@
-import React, { Fragment } from 'react';
-import { createStore } from 'redux';
+/* eslint-disable no-useless-constructor */
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
+import { connect } from 'react-redux';
+import { decrementCounter, incrementCounter } from '../redux/actions/counterActions';
 
-const initialState = {
-  value: 0,
-};
+class App extends React.Component {
+  static getInitialProps({ store }) {}
 
-const INCREMENT = 'INCREMENT';
-
-export const increment = () => (
-  {
-    type: INCREMENT,
+  constructor(props) {
+    super(props);
   }
-);
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return {
-        ...state,
-        value: state.value + 1,
-      };
-    default:
-      return {
-        ...state,
-      };
-  }
-};
-const store = createStore(reducer);
 
-const Index = () => {
-  const state = store.getState();
-
-  return (
-    <Fragment>
-      <div id="cotent">
-        <div className="container">
-          {state.value}
-          <button onClick={() => store.dispatch(increment())} type="button">증가</button>
-        </div>
+  render() {
+    return (
+      <div>
+        <button onClick={this.props.incrementCounter} type="button">Increment</button>
+        <button onClick={this.props.decrementCounter} type="button">Decrement</button>
+        <h1>{this.props.counter}</h1>
       </div>
-      <style jsx>
-        {`
-        .container {
-          height:100px;
-          margin: 0 auto;
-          width: 1200px;
-          overflow:hidden;
-        }  
-        `}
-      </style>
-    </Fragment>
-  );
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  counter: state.counter.value,
+});
+
+const mapDispatchToProps = {
+  incrementCounter,
+  decrementCounter,
 };
 
-export default Index;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

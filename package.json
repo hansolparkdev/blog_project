@@ -43,9 +43,11 @@
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
     "next": "^9.2.2",
+    "next-redux-wrapper": "^5.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
+    "react-redux": "^7.2.0",
     "redux": "^4.0.5"
   }
 }
