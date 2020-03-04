@@ -439,18 +439,6 @@ module.exports = _typeof;
 
 /***/ }),
 
-/***/ "./node_modules/next/app.js":
-/*!**********************************!*\
-  !*** ./node_modules/next/app.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./dist/pages/_app */ "./node_modules/next/dist/pages/_app.js")
-
-
-/***/ }),
-
 /***/ "./node_modules/next/dist/client/link.js":
 /*!***********************************************!*\
   !*** ./node_modules/next/dist/client/link.js ***!
@@ -1967,139 +1955,6 @@ exports.ST = exports.SP && typeof performance.mark === 'function' && typeof perf
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/pages/_app.js":
-/*!**********************************************!*\
-  !*** ./node_modules/next/dist/pages/_app.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
-
-exports.__esModule = true;
-exports.Container = Container;
-exports.createUrl = createUrl;
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-
-var _utils = __webpack_require__(/*! ../next-server/lib/utils */ "./node_modules/next/dist/next-server/lib/utils.js");
-
-exports.AppInitialProps = _utils.AppInitialProps;
-/**
-* `App` component is used for initialize of pages. It allows for overwriting and full control of the `page` initialization.
-* This allows for keeping state between navigation, custom error handling, injecting additional data.
-*/
-
-async function appGetInitialProps(_ref) {
-  var {
-    Component,
-    ctx
-  } = _ref;
-  var pageProps = await (0, _utils.loadGetInitialProps)(Component, ctx);
-  return {
-    pageProps
-  };
-}
-
-class App extends _react.default.Component {
-  // Kept here for backwards compatibility.
-  // When someone ended App they could call `super.componentDidCatch`.
-  // @deprecated This method is no longer needed. Errors are caught at the top level
-  componentDidCatch(error, _errorInfo) {
-    throw error;
-  }
-
-  render() {
-    var {
-      router,
-      Component,
-      pageProps
-    } = this.props;
-    var url = createUrl(router);
-    return _react.default.createElement(Component, Object.assign({}, pageProps, {
-      url: url
-    }));
-  }
-
-}
-
-exports.default = App;
-App.origGetInitialProps = appGetInitialProps;
-App.getInitialProps = appGetInitialProps;
-var warnContainer;
-var warnUrl;
-
-if (true) {
-  warnContainer = (0, _utils.execOnce)(() => {
-    console.warn("Warning: the `Container` in `_app` has been deprecated and should be removed. https://err.sh/zeit/next.js/app-container-deprecated");
-  });
-  warnUrl = (0, _utils.execOnce)(() => {
-    console.error("Warning: the 'url' property is deprecated. https://err.sh/zeit/next.js/url-deprecated");
-  });
-} // @deprecated noop for now until removal
-
-
-function Container(p) {
-  if (true) warnContainer();
-  return p.children;
-}
-
-function createUrl(router) {
-  // This is to make sure we don't references the router object at call time
-  var {
-    pathname,
-    asPath,
-    query
-  } = router;
-  return {
-    get query() {
-      if (true) warnUrl();
-      return query;
-    },
-
-    get pathname() {
-      if (true) warnUrl();
-      return pathname;
-    },
-
-    get asPath() {
-      if (true) warnUrl();
-      return asPath;
-    },
-
-    back: () => {
-      if (true) warnUrl();
-      router.back();
-    },
-    push: (url, as) => {
-      if (true) warnUrl();
-      return router.push(url, as);
-    },
-    pushTo: (href, as) => {
-      if (true) warnUrl();
-      var pushRoute = as ? href : '';
-      var pushUrl = as || href;
-      return router.push(pushRoute, pushUrl);
-    },
-    replace: (url, as) => {
-      if (true) warnUrl();
-      return router.replace(url, as);
-    },
-    replaceTo: (href, as) => {
-      if (true) warnUrl();
-      var replaceRoute = as ? href : '';
-      var replaceUrl = as || href;
-      return router.replace(replaceRoute, replaceUrl);
-    }
-  };
-}
-
-/***/ }),
-
 /***/ "./node_modules/next/link.js":
 /*!***********************************!*\
   !*** ./node_modules/next/link.js ***!
@@ -2123,21 +1978,22 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next-redux-wrapper */ "next-redux-wrapper");
-/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "moment");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.jsx");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next-redux-wrapper */ "next-redux-wrapper");
+/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/head */ "next/head");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.jsx");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+/* eslint-disable no-shadow */
+
 /* eslint-disable react/jsx-props-no-spreading */
+ // import App from 'next/app';
 
 
 
@@ -2145,37 +2001,52 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+moment__WEBPACK_IMPORTED_MODULE_4___default.a.locale('ko'); // class RootApp extends App {
+//   static async getInitialProps({ Component, ctx }) {
+//     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+//     // Anything returned here can be access by the client
+//     return { pageProps };
+//   }
+//   render() {
+//     const { Component, pageProps, store } = this.props;
+//     return (
+//       <Fragment>
+//         <Head>
+//           <title>Devsol Blog</title>
+//         </Head>
+//         <Provider store={store}>
+//           <Layout>
+//             <Component {...pageProps} />
+//           </Layout>
+//         </Provider>
+//       </Fragment>
+//     );
+//   }
+// }
 
-moment__WEBPACK_IMPORTED_MODULE_5___default.a.locale('ko');
+const RootApp = props => {
+  const {
+    Component,
+    pageProps,
+    store
+  } = props;
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, null, __jsx("title", null, "Devsol Blog")), __jsx(react_redux__WEBPACK_IMPORTED_MODULE_1__["Provider"], {
+    store: store
+  }, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_5__["default"], null, __jsx(Component, pageProps))));
+};
 
-class RootApp extends next_app__WEBPACK_IMPORTED_MODULE_1___default.a {
-  static async getInitialProps({
+RootApp.getInitialProps = async context => {
+  const {
     Component,
     ctx
-  }) {
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}; // Anything returned here can be access by the client
+  } = context;
+  const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+  return {
+    pageProps
+  };
+};
 
-    return {
-      pageProps
-    };
-  }
-
-  render() {
-    const {
-      Component,
-      pageProps,
-      store
-    } = this.props;
-    return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, null, __jsx("title", null, "Devsol Blog")), __jsx(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
-      store: store
-    }, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_6__["default"], null, __jsx(Component, pageProps))));
-  }
-
-}
-
-const makeStore = () => _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"];
-
-/* harmony default export */ __webpack_exports__["default"] = (next_redux_wrapper__WEBPACK_IMPORTED_MODULE_3___default()(makeStore)(RootApp));
+/* harmony default export */ __webpack_exports__["default"] = (next_redux_wrapper__WEBPACK_IMPORTED_MODULE_2___default()(() => _redux_store__WEBPACK_IMPORTED_MODULE_6__["default"])(RootApp));
 
 /***/ }),
 
@@ -2183,25 +2054,47 @@ const makeStore = () => _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"];
 /*!******************************************!*\
   !*** ./redux/actions/counterActions.jsx ***!
   \******************************************/
-/*! exports provided: INCREMENT_COUNTER, DECREMENT_COUNTER, incrementCounter, decrementCounter */
+/*! exports provided: INCREMENT_COUNTER, DECREMENT_COUNTER, increment, decrement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INCREMENT_COUNTER", function() { return INCREMENT_COUNTER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DECREMENT_COUNTER", function() { return DECREMENT_COUNTER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "incrementCounter", function() { return incrementCounter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decrementCounter", function() { return decrementCounter; });
-// Action Types
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "increment", function() { return increment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decrement", function() { return decrement; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // Action Types
+
 const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 const DECREMENT_COUNTER = 'DECREMENT_COUNTER'; // Action Creator
 
-const incrementCounter = () => ({
+const increment = () => ({
   type: INCREMENT_COUNTER
 });
-const decrementCounter = () => ({
+const decrement = () => ({
   type: DECREMENT_COUNTER
-});
+}); // export const incrementAsync = () => (dispatch) => { // dispatch 를 파라미터로 가지는 함수를 리턴합니다.
+//   setTimeout(() => {
+//     // 1 초뒤 dispatch 합니다
+//     dispatch(increment());
+//   }, 1000);
+// };
+// export const decrementAsync = () => (dispatch) => { // dispatch 를 파라미터로 가지는 함수를 리턴합니다.
+//   setTimeout(() => {
+//     // 1 초뒤 dispatch 합니다
+//     dispatch(decrement());
+//   }, 1000);
+// };
+// export const incrementIfOdd = () => (dispatch, getState) => {
+//   const { counter } = getState();
+//   // console.log(counter);
+//   if (counter.value >= 5) {
+//     return;
+//   }
+//   dispatch(increment());
+// };
 
 /***/ }),
 
@@ -2209,11 +2102,12 @@ const decrementCounter = () => ({
 /*!*******************************************!*\
   !*** ./redux/reducers/counterReducer.jsx ***!
   \*******************************************/
-/*! exports provided: default */
+/*! exports provided: initialState, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialState", function() { return initialState; });
 /* harmony import */ var _actions_counterActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/counterActions */ "./redux/actions/counterActions.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2222,10 +2116,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+const initialState = {
+  value: 1
+};
 
-const counterReducer = (state = {
-  value: 0
-}, action) => {
+const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case _actions_counterActions__WEBPACK_IMPORTED_MODULE_0__["INCREMENT_COUNTER"]:
       return _objectSpread({}, state, {
@@ -2246,6 +2141,111 @@ const counterReducer = (state = {
 
 /***/ }),
 
+/***/ "./redux/reducers/post.js":
+/*!********************************!*\
+  !*** ./redux/reducers/post.js ***!
+  \********************************/
+/*! exports provided: getPost, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPost", function() { return getPost; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function getPostAPI(postId) {
+  console.log(postId);
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`https://jsonplaceholder.typicode.com/posts/${postId}`); // return axios.get('../');
+}
+
+const initialState = {
+  pending: false,
+  error: false,
+  data: {
+    title: '',
+    body: ''
+  }
+};
+const GET_POST_PENDING = 'GET_POST_PENDING';
+const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+const GET_POST_FAILURE = 'GET_POST_FAILURE';
+const getPost = postId => dispatch => {
+  // 먼저, 요청이 시작했다는것을 알립니다
+  console.log('test');
+  dispatch({
+    type: GET_POST_PENDING
+  }); // 요청을 시작합니다
+  // 여기서 만든 promise 를 return 해줘야, 나중에 컴포넌트에서 호출 할 때 getPost().then(...) 을 할 수 있습니다
+
+  return getPostAPI(postId).then(response => {
+    // 요청이 성공했을경우, 서버 응답내용을 payload 로 설정하여 GET_POST_SUCCESS 액션을 디스패치합니다.
+    console.log(response);
+    dispatch({
+      type: GET_POST_SUCCESS,
+      payload: response
+    });
+  }).catch(error => {
+    // 에러가 발생했을 경우, 에로 내용을 payload 로 설정하여 GET_POST_FAILURE 액션을 디스패치합니다.
+    console.log(error);
+    dispatch({
+      type: GET_POST_FAILURE,
+      payload: error
+    });
+  });
+};
+
+const handleAction = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_POST_PENDING:
+      {
+        return _objectSpread({}, state, {
+          pending: true,
+          error: false
+        });
+      }
+
+    case GET_POST_SUCCESS:
+      {
+        const {
+          title,
+          body
+        } = action.payload.data;
+        return _objectSpread({}, state, {
+          pending: false,
+          data: {
+            title,
+            body
+          }
+        });
+      }
+
+    case GET_POST_FAILURE:
+      {
+        return _objectSpread({}, state, {
+          pending: false,
+          error: true
+        });
+      }
+
+    default:
+      {
+        return _objectSpread({}, state);
+      }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (handleAction);
+
+/***/ }),
+
 /***/ "./redux/reducers/rootReducer.js":
 /*!***************************************!*\
   !*** ./redux/reducers/rootReducer.js ***!
@@ -2258,12 +2258,107 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _counterReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counterReducer */ "./redux/reducers/counterReducer.jsx");
+/* harmony import */ var _todos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todos */ "./redux/reducers/todos.jsx");
+/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post */ "./redux/reducers/post.js");
+
+
 
 
 const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  counter: _counterReducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  counter: _counterReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  todos: _todos__WEBPACK_IMPORTED_MODULE_2__["default"],
+  post: _post__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
+
+/***/ }),
+
+/***/ "./redux/reducers/todos.jsx":
+/*!**********************************!*\
+  !*** ./redux/reducers/todos.jsx ***!
+  \**********************************/
+/*! exports provided: changeInput, insert, toggleCheck, remove, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeInput", function() { return changeInput; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "insert", function() { return insert; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleCheck", function() { return toggleCheck; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* eslint-disable no-shadow */
+
+/* eslint-disable no-plusplus */
+
+/* eslint-disable no-return-assign */
+// 액션 선언
+const CHANGE_INPUT = 'todos/CHANGE_INPUT';
+const INSERT = 'todos/INSERT';
+const TOGGLE_CHECK = 'todos/TOGGLE_CHECK';
+const REMOVE = 'todos/REMOVE';
+let id = 0;
+const changeInput = input => ({
+  type: CHANGE_INPUT,
+  payload: input
+});
+const insert = text => ({
+  type: INSERT,
+  payload: {
+    id: ++id,
+    text
+  }
+});
+const toggleCheck = id => ({
+  type: TOGGLE_CHECK,
+  payload: id
+});
+const remove = id => ({
+  type: REMOVE,
+  payload: id
+});
+const initialState = {
+  input: '',
+  todos: []
+};
+
+const todos = (state = initialState, action) => {
+  switch (action.type) {
+    case CHANGE_INPUT:
+      return _objectSpread({}, state, {
+        input: action.payload
+      });
+
+    case INSERT:
+      return _objectSpread({}, state, {
+        todos: state.todos.concat(_objectSpread({}, action.payload, {
+          done: false
+        }))
+      });
+
+    case TOGGLE_CHECK:
+      return _objectSpread({}, state, {
+        todos: state.todos.map(todo => todo.id === action.payload ? _objectSpread({}, todo, {
+          done: !todo.done
+        }) : todo)
+      });
+
+    case REMOVE:
+      return _objectSpread({}, state, {
+        todos: state.todos.filter(todo => todo.id !== action.payload)
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (todos);
 
 /***/ }),
 
@@ -2278,10 +2373,18 @@ const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reducers/rootReducer */ "./redux/reducers/rootReducer.js");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-logger */ "redux-logger");
+/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "redux-thunk");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux_thunk__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reducers/rootReducer */ "./redux/reducers/rootReducer.js");
 
 
-const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+ // import loggerMiddleware from './lib/loggerMiddleware';
+
+const logger = Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger"])();
+const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_3__["default"], Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2___default.a));
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ }),
@@ -2295,6 +2398,17 @@ const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducer
 
 module.exports = __webpack_require__(/*! private-next-pages/_app.jsx */"./pages/_app.jsx");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
@@ -2449,6 +2563,28 @@ module.exports = require("react-redux");
 /***/ (function(module, exports) {
 
 module.exports = require("redux");
+
+/***/ }),
+
+/***/ "redux-logger":
+/*!*******************************!*\
+  !*** external "redux-logger" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-logger");
+
+/***/ }),
+
+/***/ "redux-thunk":
+/*!******************************!*\
+  !*** external "redux-thunk" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
 
 /***/ }),
 

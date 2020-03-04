@@ -39,6 +39,8 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
@@ -48,6 +50,8 @@
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   }
 }
